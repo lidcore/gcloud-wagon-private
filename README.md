@@ -15,7 +15,7 @@ Add the plugin and repositories listing to `project.clj`:
 :plugins [[gcloud-wagon-private "0.1.0"]]
 ```
 
-Credentials are fetched using the (Google Application Default Credentials)[https://developers.google.com/identity/protocols/application-default-credentials]
+Credentials are fetched using the [Google Application Default Credentials](https://developers.google.com/identity/protocols/application-default-credentials)
 however, Leiningen still requires to pass username/password so you can add the following to your
 `project.clj`:
 
