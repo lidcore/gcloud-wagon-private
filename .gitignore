@@ -2,6 +2,7 @@ target
 .idea
 *.iml
 *jar
+.*sw*
 /lib
 /classes
 /native

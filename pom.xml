@@ -4,15 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>s3-wagon-private</groupId>
-    <artifactId>s3-wagon-private</artifactId>
-    <version>1.2.0</version>
-    <description>Deploy and consume artifacts in private S3 repositories.</description>
-    <url>https://github.com/technomancy/s3-wagon-private</url>
+    <groupId>gcloud-wagon-private</groupId>
+    <artifactId>gcloud-wagon-private</artifactId>
+    <version>0.1.0</version>
+    <description>Deploy and consume artifacts in private gcloud storage repositories.</description>
+    <url>https://github.com/lidcore/gcloud-wagon-private</url>
     <scm>
-        <connection>scm:git:git://github.com/technomancy/s3-wagon-private.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/technomancy/s3-wagon-private.git</developerConnection>
-        <url>https://github.com/technomancy/s3-wagon-private</url>
+        <connection>scm:git:git://github.com/lidcore/gcloud-wagon-private.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/lidcore/gcloud-wagon-private.git</developerConnection>
+        <url>https://github.com/lidcore/gcloud-wagon-private</url>
     </scm>
 
     <licenses>
@@ -32,9 +32,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.build</groupId>
-            <artifactId>aws-maven</artifactId>
-            <version>4.8.0.RELEASE</version>
+            <groupId>com.google.cloud</groupId>
+            <artifactId>gcloud-java-storage</artifactId>
+            <version>0.2.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.wagon</groupId>

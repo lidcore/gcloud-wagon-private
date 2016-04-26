@@ -1,9 +1,9 @@
-# s3-wagon-private
+# gcloud-wagon-private
 
 Deploy and consume artifacts in private S3 repositories. Designed to
 be used from [Leiningen](https://github.com/technomancy/leiningen),
 but should be usable in other contexts by deploying to repositories at
-"s3p://" URLs.
+"gcloud://" URLs.
 
 ## Usage
 
@@ -12,7 +12,7 @@ but should be usable in other contexts by deploying to repositories at
 Add the plugin and repositories listing to `project.clj`:
 
 ```clj
-:plugins [[s3-wagon-private "1.2.0"]]
+:plugins [[gcloud-wagon-private "1.2.0"]]
 ```
 
 You can store credentials either in an encrypted file or as
@@ -20,13 +20,13 @@ environment variables. For the encrypted file, add this to
 `project.clj`:
 
 ```clj
-:repositories [["private" {:url "s3p://mybucket/releases/" :creds :gpg}]]
+:repositories [["private" {:url "gcloud://mybucket/releases/" :creds :gpg}]]
 ```
 
 And in `~/.lein/credentials.clj.gpg`:
 
 ```
-{"s3p://mybucket/releases" {:username "AKIA2489AE28488"
+{"gcloud://mybucket/releases" {:username "AKIA2489AE28488"
                             :passphrase "98b0b104ca1211e19a6c"}}
 ```
 
@@ -51,8 +51,8 @@ your project, so you should take them from the environment using
 
 ```clj
 (defproject my-project "1.0.0"
-  :plugins [[s3-wagon-private "1.2.0"]]
-  :repositories {"releases" {:url "s3p://mybucket/releases/"
+  :plugins [[gcloud-wagon-private "1.2.0"]]
+  :repositories {"releases" {:url "gcloud://mybucket/releases/"
                              :username :env/aws_access_key ;; gets environment variable AWS_ACCESS_KEY
                              :passphrase :env/aws_secret_key}}) ;; gets environment variable AWS_SECRET_KEY 
 ```
@@ -65,8 +65,8 @@ your project, so you should take them from the environment using
      <build>
         <extensions>
             <extension>
-                <groupId>s3-wagon-private</groupId>
-                <artifactId>s3-wagon-private</artifactId>
+                <groupId>gcloud-wagon-private</groupId>
+                <artifactId>gcloud-wagon-private</artifactId>
                 <version>1.2.0</version>
             </extension>
         </extensions>
@@ -78,12 +78,12 @@ your project, so you should take them from the environment using
                 <repository>
                     <id>someId</id>
                     <name>Some Name</name>
-                    <url>s3p://some-bucket/release</url>
+                    <url>gcloud://some-bucket/release</url>
                 </repository>
                 <snapshotRepository>
                     <id>someSnapshotId</id>
                     <name>Some Snapshot Name</name>
-                    <url>s3p://some-bucket/snapshot</url>
+                    <url>gcloud://some-bucket/snapshot</url>
                 </snapshotRepository>
      </distributionManagement>
 
@@ -93,7 +93,7 @@ your project, so you should take them from the environment using
         <repository>
             <id>someId</id>
             <name>Some Name</name>
-            <url>s3p://some-bucket/release</url>
+            <url>gcloud://some-bucket/release</url>
         </repository>
     </repositories>
 
@@ -120,28 +120,10 @@ your project, so you should take them from the environment using
 
 ```
 
-### Changes in version 1.2.0
-
-s3-wagon-private is now based on aws-maven 4.8.0-RELEASE, which now uses the
-official Amazon S3 client, rather than JetS3t. The list of IAM
-permissions required on your S3 bucket have changed, they now include:
-
- - getBucketLocation
- - listObjects
- - getObject
- - getObjectMetadata
- - putObject (when deploying)
- 
-## Troubleshooting
-
-If you are seeing errors like: `java.lang.IllegalArgumentException: No matching ctor found for class org.sonatype.aether.repository.Authentication`, and you are using [lein-npm](https://github.com/RyanMcG/lein-npm), try upgrading to version `0.5.1` or later. It contains fixes for [an issue](https://github.com/RyanMcG/lein-npm/pull/13) when using keyword sourced environment variables in your `:repositories`.
-
-
 ## License
 
-Copyright © 2011-2013 Phil Hagelberg, Scott Clasen, Allen Rohner
+Copyright © 2016 Lidcore
 
-Based on [aws-maven](http://git.springsource.org/spring-build/aws-maven)
-from the Spring project.
+Based on [s3-wagon-private](https://github.com/technomancy/s3-wagon-private)
 
 Distributed under the Apache Public License version 2.0.
